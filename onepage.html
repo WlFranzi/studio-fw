@@ -12,11 +12,15 @@
     .one {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: grid;
-      grid-template-rows: auto 1fr auto auto;
       padding: 0 var(--gutter);
+    }
+
+    /* Zwei Hälften, genau so hoch wie die Papierhälften: der Knick liegt immer dazwischen */
+    .half {
+      min-height: 50vh;
+      min-height: 50dvh;
+      display: flex;
+      flex-direction: column;
     }
 
     .one-head {
@@ -34,12 +38,15 @@
     }
 
     /* obere Hälfte endet knapp über dem Knick */
+    /* obere Hälfte: Inhalt mittig zwischen Kopfzeile und Knick */
     .top {
+      flex: 1;
       display: grid;
       grid-template-columns: auto minmax(0, 1.4fr) minmax(0, 1fr);
       gap: 3vw;
-      align-items: end;
-      padding: 2vh 0 2.4vh;
+      align-items: center;
+      align-content: center;
+      padding: 2vh 0 3vh;
     }
 
     .top .photo {
@@ -94,12 +101,15 @@
     .about-mini p + p { margin-top: 0.4rem; }
 
     /* untere Hälfte beginnt knapp unter dem Knick */
+    /* untere Hälfte: beginnt direkt unter dem Knick, Footer unten */
     .bottom {
-      padding-top: 2.6vh;
+      padding-top: 2.4vh;
       display: flex;
       flex-direction: column;
-      gap: 1.8vh;
+      gap: 1.4vh;
     }
+
+    .lower .one-foot { margin-top: auto; }
 
     .bottom .head {
       display: flex;
@@ -153,8 +163,8 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem 3rem;
-      margin: 1.4vh 0 0;
-      padding: 1.2vh 0 1.6vh;
+      margin: 1.2vh 0 0;
+      padding: 0.9vh 0 1.2vh;
       border-top: 1.5px solid var(--ink);
       font-size: 0.72rem;
     }
@@ -207,9 +217,20 @@
       cursor: pointer;
     }
 
+    /* Große Bildschirme: alles etwas größer, damit die Fläche nicht leer wirkt */
+    @media (min-width: 1600px) and (min-height: 1000px) {
+      html { font-size: 18px; }
+      .top .photo { width: min(12vw, 220px); }
+      .one .logo-row .tum { height: 24px; }
+      .one .logo-row .ik { height: 18px; }
+      .one .logo-row .infineon { height: 31px; }
+      .one .logo-row .hipp { height: 22px; }
+      .one .logo-row .dhl { height: 16px; }
+    }
+
     /* Auf niedrigen Bildschirmen und Handys darf normal gescrollt werden */
     @media (max-width: 760px) {
-      .one { grid-template-rows: none; display: block; }
+      .half { min-height: 0; }
       .top { grid-template-columns: 1fr; gap: 1.2rem; padding: 2vh 0 4vh; }
       .top .photo { width: 42%; max-width: 170px; }
       .bottom { padding-top: 2vh; }
@@ -229,6 +250,7 @@
 </head>
 <body>
   <div class="one">
+    <div class="half upper">
     <header class="one-head">
       <span class="brand">Studio FW</span>
       <a href="mailto:franziska.wittleder@gmail.com">franziska.wittleder@gmail.com</a>
@@ -252,8 +274,10 @@
         <p>Former Lead für Sprach-KI bei Writer (San Francisco), Führung von Tech-Teams bei Ring AI (Amazon), AI-Advisor für das Hamburger AI Center. Data Science (Cornell University), Economics (HSG). Gründerin von Mosso (Health-Tech).</p>
       </div>
     </section>
+    </div>
 
     <!-- Unter dem Knick: was -->
+    <div class="half lower">
     <section class="bottom">
       <div class="head">
         <p class="label">Das Framework</p>
@@ -322,6 +346,7 @@
       </nav>
       </div>
     </footer>
+    </div>
   </div>
 
   <!-- Anfrage als Fenster -->
