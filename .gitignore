@@ -1,0 +1,8 @@
+# Rohdateien (bearbeitete Versionen liegen in img/)
+/fw_shot.png
+/paper_background.jpg
+/logos/
+
+# lokal
+.DS_Store
+.claude/
