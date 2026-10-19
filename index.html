@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f3f3f1">
   <title>Studio FW – KI-Workshops für Teams</title>
   <meta name="description" content="KI-Workshops von Franziska Wittleder: vom Verständnis über einsatzfähige Agenten bis zu vollautonomen Workflows.">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/site.css?v=4">
 </head>
 <body>
   <main>
@@ -14,9 +14,12 @@
     <!-- Hero -->
     <section class="hero split">
       <div class="left">
-        <div class="photo-box">
-          <img src="img/portrait.png" alt="Franziska Wittleder">
-        </div>
+        <figure class="portrait">
+          <div class="photo-box">
+            <img src="img/portrait.png" alt="Franziska Wittleder">
+          </div>
+          <figcaption class="hero-quote">„KI soll sich nicht wie Magie anfühlen, sondern wie ein gutes Werkzeug.“</figcaption>
+        </figure>
       </div>
       <div class="right">
         <h1>KI ist keine Suchmaschine.<br>Bauen Sie Infrastruktur.</h1>
@@ -119,8 +122,8 @@
       </div>
     </section>
 
-    <!-- Anfrage -->
-    <section id="anfrage" class="split contact">
+    <!-- Anfrage: gerahmter Block, Felder paarweise -->
+    <section id="anfrage" class="split contact contact-card">
       <div>
         <p class="label">Kontakt</p>
         <h2 style="margin-top:0.6rem">In 2 Minuten anfragen</h2>
@@ -129,34 +132,36 @@
       </div>
       <div>
         <form id="request-form" data-subject="Workshop-Anfrage">
-          <div class="field">
-            <input id="r-name" name="name" type="text" autocomplete="name" required>
-            <label for="r-name">Name</label>
-          </div>
-          <div class="field">
-            <input id="r-email" name="email" type="email" autocomplete="email" required>
-            <label for="r-email">E-Mail</label>
-          </div>
-          <div class="field">
-            <input id="r-company" name="company" type="text" autocomplete="organization">
-            <label for="r-company">Unternehmen</label>
-          </div>
-          <div class="field">
-            <input id="r-who" name="who" type="text" placeholder="z. B. 15 Leute, Marketing &amp; Ops" required>
-            <label for="r-who">Wer nimmt teil?</label>
-          </div>
-          <div class="field">
-            <input id="r-time" name="time" type="text" placeholder="z. B. ein Tag im November" required>
-            <label for="r-time">Wie viel Zeit haben Sie?</label>
-          </div>
-          <div class="field">
-            <select id="r-format" name="format">
-              <option value="offen">Noch offen</option>
-              <option value="phase1">Phase 1 – Intuition für KI schärfen</option>
-              <option value="phase2">Phase 2 – Einsatzfähige Agenten bauen</option>
-              <option value="phase3">Phase 3 – Vollautonome Workflows</option>
-            </select>
-            <label for="r-format">Format</label>
+          <div class="field-grid">
+            <div class="field">
+              <input id="r-name" name="name" type="text" autocomplete="name" required>
+              <label for="r-name">Name</label>
+            </div>
+            <div class="field">
+              <input id="r-email" name="email" type="email" autocomplete="email" required>
+              <label for="r-email">E-Mail</label>
+            </div>
+            <div class="field">
+              <input id="r-company" name="company" type="text" autocomplete="organization">
+              <label for="r-company">Unternehmen</label>
+            </div>
+            <div class="field">
+              <input id="r-who" name="who" type="text" placeholder="z. B. 15 Personen" required>
+              <label for="r-who">Wer nimmt teil?</label>
+            </div>
+            <div class="field">
+              <input id="r-time" name="time" type="text" placeholder="z. B. ein Tag im November" required>
+              <label for="r-time">Wie viel Zeit haben Sie?</label>
+            </div>
+            <div class="field">
+              <select id="r-format" name="format">
+                <option value="offen">Noch offen</option>
+                <option value="phase1">Phase 1 – Intuition für KI schärfen</option>
+                <option value="phase2">Phase 2 – Einsatzfähige Agenten bauen</option>
+                <option value="phase3">Phase 3 – Vollautonome Workflows</option>
+              </select>
+              <label for="r-format">Format</label>
+            </div>
           </div>
           <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="cta" type="submit">Anfrage senden</button>
@@ -167,34 +172,30 @@
       </div>
     </section>
 
-    <!-- Über -->
-    <section class="split about">
-      <div>
+    <!-- Über und Newsletter nebeneinander -->
+    <section class="duo">
+      <div class="about">
         <p class="label">Über</p>
         <h2 style="margin-top:0.6rem">Franziska Wittleder</h2>
+        <p class="about-text">Former Lead für Sprach-KI bei <a href="https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/" target="_blank" rel="noopener">Writer</a> (San Francisco), Führung von Tech-Teams bei Ring AI (Amazon), AI-Advisor für das Hamburger AI Center. Data Science (Cornell University), Economics (HSG). Gründerin von Mosso (Health-Tech).</p>
+        <img class="signature" src="img/unterschrift.png" alt="Unterschrift Franziska Wittleder">
       </div>
-      <div>
-        <p>Engineering- &amp; Leadership-Expertise ohne Marketing-Blabla.</p>
-        <p>Former Lead für Sprach-KI bei <a href="https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/" target="_blank" rel="noopener">Writer</a> (San Francisco), Führung von Tech-Teams bei Ring AI (Amazon), AI-Advisor für das Hamburger AI Center. Data Science (Cornell University), Economics (HSG). Gründerin von Mosso (Health-Tech).</p>
-      </div>
-    </section>
 
-    <!-- Newsletter -->
-    <section class="split newsletter">
-      <div>
+      <!-- Newsletter als Abschnitt zum Ausschneiden -->
+      <div class="coupon newsletter">
         <p class="label">Newsletter</p>
         <h2 style="margin-top:0.6rem">Ein System alle paar Wochen.</h2>
-      </div>
-      <div>
         <p class="newsletter-lead">Ein KI-Workflow, den ich wirklich gebaut habe, mit Aufbau, Prompts und dem, was schiefging. Kein News-Roundup.</p>
         <form id="newsletter-form" data-subject="Newsletter-Anmeldung">
-          <div class="field">
-            <input id="name" name="name" type="text" autocomplete="name" required>
-            <label for="name">Name</label>
-          </div>
-          <div class="field">
-            <input id="email" name="email" type="email" autocomplete="email" required>
-            <label for="email">E-Mail</label>
+          <div class="field-grid">
+            <div class="field">
+              <input id="name" name="name" type="text" autocomplete="name" required>
+              <label for="name">Name</label>
+            </div>
+            <div class="field">
+              <input id="email" name="email" type="email" autocomplete="email" required>
+              <label for="email">E-Mail</label>
+            </div>
           </div>
           <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="cta" type="submit">Bauplan erhalten</button>
@@ -215,6 +216,6 @@
     </nav>
   </footer>
 
-  <script src="js/forms.js"></script>
+  <script src="js/forms.js?v=4"></script>
 </body>
 </html>
