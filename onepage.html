@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f3f1">
+  <title>Studio FW – KI-Workshops für Teams</title>
+  <meta name="description" content="KI-Workshops von Franziska Wittleder: vom Verständnis über einsatzfähige Agenten bis zu vollautonomen Workflows.">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    /* Ein Bildschirm: oben (über dem Knick) wer, unten (unter dem Knick) was */
+    .one {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      padding: 0 var(--gutter);
+    }
+
+    .one-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0 0;
+      font-size: 0.8rem;
+    }
+
+    .one-head .brand {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* obere Hälfte endet knapp über dem Knick */
+    .top {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 3vw;
+      align-items: end;
+      padding: 2vh 0 2.4vh;
+    }
+
+    .top .photo {
+      width: min(13vw, 170px);
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .top h1 {
+      font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+      line-height: 1.06;
+    }
+
+    .top .intro {
+      margin-top: 0.9rem;
+      max-width: 54ch;
+      font-size: 0.85rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem 1.6rem;
+      margin-top: 1.3rem;
+    }
+
+    .text-btn {
+      border: 0;
+      background: none;
+      padding: 0;
+      font: inherit;
+      font-size: 0.85rem;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1.5px;
+      cursor: pointer;
+    }
+
+    .about-mini p {
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    .about-mini h2 {
+      margin-top: 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    .about-mini p + p { margin-top: 0.4rem; }
+
+    /* untere Hälfte beginnt knapp unter dem Knick */
+    .bottom {
+      padding-top: 2.6vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8vh;
+    }
+
+    .bottom .head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+    }
+
+    .bottom .head h2 { font-size: 1.05rem; }
+
+    .one .phases {
+      margin: 0;
+      gap: 2.4vw;
+    }
+
+    .one .phase { padding-top: 0.8rem; }
+    .one .phase h3 { margin-top: 0.4rem; font-size: 1rem; }
+    .one .phase .verb { font-size: 0.78rem; }
+    .one .phase .pr { margin-top: 0.45rem; font-size: 0.78rem; line-height: 1.5; }
+    .one .phase .pr:last-of-type { margin-bottom: 0.6rem; flex: 1; }
+    .one .phase .k {
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-right: 0.3rem;
+    }
+    .one .phase .line { margin-top: 0.4rem; font-size: 0.7rem; }
+
+    .one .phase .text-btn { font-size: 0.8rem; align-self: flex-start; }
+
+    .one .logos {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+    }
+
+    .one .logos .label { white-space: nowrap; }
+    .one .logo-row { flex: 1; flex-wrap: nowrap; justify-content: flex-start; gap: 2.2rem; margin-top: 0; }
+    .one .logo-row img { opacity: 0.75; }
+    .one .logo-row .tum { height: 20px; }
+    .one .logo-row .ik { height: 15px; }
+    .one .logo-row .infineon { height: 26px; }
+    .one .logo-row .hipp { height: 18px; }
+    .one .logo-row .dhl { height: 13px; }
+
+    .one-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 3rem;
+      margin: 1.4vh 0 0;
+      padding: 1.2vh 0 1.6vh;
+      border-top: 1.5px solid var(--ink);
+      font-size: 0.72rem;
+    }
+
+    .one-foot .logos { flex: 1; }
+
+    .foot-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.2rem;
+    }
+
+    .one-foot nav { display: flex; gap: 1.6rem; }
+
+    /* Formular-Fenster */
+    dialog.sheet {
+      width: min(560px, calc(100vw - 32px));
+      max-height: calc(100dvh - 32px);
+      margin: auto;
+      padding: 2rem 2rem 1.6rem;
+      border: 1.5px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    dialog.sheet::backdrop { background: rgba(17, 17, 17, 0.35); }
+
+    .sheet-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .sheet-head h2 { font-size: 1.4rem; }
+    .sheet-head p { margin-top: 0.5rem; font-size: 0.82rem; }
+
+    .close {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      margin: -0.6rem -0.6rem 0 0;
+      border: 0;
+      background: none;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    /* Auf niedrigen Bildschirmen und Handys darf normal gescrollt werden */
+    @media (max-width: 760px) {
+      .one { grid-template-rows: none; display: block; }
+      .top { grid-template-columns: 1fr; gap: 1.2rem; padding: 2vh 0 4vh; }
+      .top .photo { width: 42%; max-width: 170px; }
+      .bottom { padding-top: 2vh; }
+      .bottom .head { flex-direction: column; gap: 0.3rem; }
+      .one .phases { gap: 1.8rem; }
+      .one .logos { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 3vh 0 0; }
+      .one .logo-row { flex-wrap: wrap; gap: 1.2rem 1.8rem; }
+      .one-foot { flex-direction: column; align-items: flex-start; padding-top: 3vh; }
+      .foot-right { align-items: flex-start; }
+      .one-foot nav { flex-direction: column; gap: 0; }
+      .one-foot a { display: inline-flex; align-items: center; min-height: 44px; }
+      .text-btn { min-height: 44px; }
+      .actions .cta { width: 100%; }
+      dialog.sheet { padding: 1.4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="one">
+    <header class="one-head">
+      <span class="brand">Studio FW</span>
+      <a href="mailto:franziska.wittleder@gmail.com">franziska.wittleder@gmail.com</a>
+    </header>
+
+    <!-- Über dem Knick: wer -->
+    <section class="top">
+      <img class="photo" src="img/portrait.png" alt="Franziska Wittleder">
+      <div>
+        <h1>KI ist keine Suchmaschine.<br>Bauen Sie Infrastruktur.</h1>
+        <p class="intro">Ich habe Sprach-KI programmiert, bevor ChatGPT ein Produkt war (bei Writer in San Francisco). Ich bringe Ihrem Team bei, KI von einer „netten Spielerei“ in eine messbare Hebelwirkung (Leverage) zu verwandeln.</p>
+        <div class="actions">
+          <button class="cta" type="button" data-open="anfrage-dialog">Workshop-Kapazitäten anfragen</button>
+          <button class="text-btn" type="button" data-open="newsletter-dialog">Newsletter: Ein System alle paar Wochen →</button>
+        </div>
+      </div>
+      <div class="about-mini">
+        <p class="label">Über</p>
+        <h2>Franziska Wittleder</h2>
+        <p>Engineering- &amp; Leadership-Expertise ohne Marketing-Blabla.</p>
+        <p>Former Lead für Sprach-KI bei Writer (San Francisco), Führung von Tech-Teams bei Ring AI (Amazon), AI-Advisor für das Hamburger AI Center. Data Science (Cornell University), Economics (HSG). Gründerin von Mosso (Health-Tech).</p>
+      </div>
+    </section>
+
+    <!-- Unter dem Knick: was -->
+    <section class="bottom">
+      <div class="head">
+        <p class="label">Das Framework</p>
+        <h2>Vom Verständnis zur Autonomie</h2>
+      </div>
+
+      <div class="phases">
+        <article class="phase">
+          <div>
+            <p class="phase-num">Phase 01</p>
+            <h3>Die Intuition für KI schärfen</h3>
+            <p class="line">Verstehen · 90 Min bis ½ Tag · 20–60 Personen · Online oder vor Ort</p>
+          </div>
+          <div>
+            <p class="pr"><span class="k">Problem</span> Teams vertrauen KI-Antworten blind oder lehnen sie komplett ab.</p>
+            <p class="pr"><span class="k">Ergebnis</span> Ihr Team entwickelt ein feines Gespür dafür, wann ein Modell halluziniert, und etabliert klare Verifikations-Prozesse.</p>
+            <button class="text-btn" type="button" data-open="anfrage-dialog" data-format="phase1">Live-Demo anfordern →</button>
+          </div>
+        </article>
+
+        <article class="phase">
+          <div>
+            <p class="phase-num">Phase 02</p>
+            <h3>Einsatzfähige Agenten bauen</h3>
+            <p class="line">Bauen · 1 Tag · 8–12 Personen · Vor Ort</p>
+          </div>
+          <div>
+            <p class="pr"><span class="k">Problem</span> Prompts sind nett, aber sie automatisieren keine komplexe Arbeit.</p>
+            <p class="pr"><span class="k">Ergebnis</span> Ein funktionsfähiger Agent für einen echten Workflow in Ihrem Unternehmen, mit Guardrails &amp; Evaluation.</p>
+            <button class="text-btn" type="button" data-open="anfrage-dialog" data-format="phase2">Agenten-Workshop buchen →</button>
+          </div>
+        </article>
+
+        <article class="phase">
+          <div>
+            <p class="phase-num">Phase 03 <span class="star" aria-label="Empfohlen">★</span></p>
+            <h3>Vollautonome Workflows etablieren</h3>
+            <p class="line">Automatisieren · 2 Tage (1 Woche Abstand) · 8–12 Personen</p>
+          </div>
+          <div>
+            <p class="pr"><span class="k">Problem</span> KI-Tools stoppen, sobald Sie Ihren Laptop zuklappen.</p>
+            <p class="pr"><span class="k">Ergebnis</span> Ein im Hintergrund laufendes System, das Sie nur benachrichtigt, wenn menschliche Freigabe nötig ist.</p>
+            <button class="text-btn" type="button" data-open="anfrage-dialog" data-format="phase3">System-Session anfragen →</button>
+          </div>
+        </article>
+      </div>
+
+    </section>
+
+    <footer class="one-foot">
+      <div class="logos">
+        <p class="label">Erprobter Impact bei Teams von</p>
+        <div class="logo-row">
+          <img class="tum" src="img/logos/tum.png" alt="Technische Universität München">
+          <img class="infineon" src="img/logos/infineon.png" alt="Infineon">
+          <img class="ik" src="img/logos/ik-partners.png" alt="IK Partners">
+          <img class="hipp" src="img/logos/hipp.png" alt="HiPP">
+          <img class="dhl" src="img/logos/dhl.png" alt="DHL">
+        </div>
+      </div>
+      <div class="foot-right">
+        <span>© 2026 Studio FW · Franziska Wittleder</span>
+      <nav>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Anfrage als Fenster -->
+  <dialog class="sheet" id="anfrage-dialog" aria-labelledby="anfrage-title">
+    <div class="sheet-head">
+      <div>
+        <h2 id="anfrage-title">In 2 Minuten anfragen</h2>
+        <p>Wer nimmt teil? Wie viel Zeit haben Sie? Ich melde mich direkt mit konkreten Terminoptionen. (Deutsch &amp; Englisch)</p>
+      </div>
+      <button class="close" type="button" data-close aria-label="Schließen">×</button>
+    </div>
+    <form id="request-form" data-subject="Workshop-Anfrage">
+      <div class="field">
+        <input id="r-name" name="name" type="text" autocomplete="name" required>
+        <label for="r-name">Name</label>
+      </div>
+      <div class="field">
+        <input id="r-email" name="email" type="email" autocomplete="email" required>
+        <label for="r-email">E-Mail</label>
+      </div>
+      <div class="field">
+        <input id="r-company" name="company" type="text" autocomplete="organization">
+        <label for="r-company">Unternehmen</label>
+      </div>
+      <div class="field">
+        <input id="r-who" name="who" type="text" placeholder="z. B. 15 Leute, Marketing &amp; Ops" required>
+        <label for="r-who">Wer nimmt teil?</label>
+      </div>
+      <div class="field">
+        <input id="r-time" name="time" type="text" placeholder="z. B. ein Tag im November" required>
+        <label for="r-time">Wie viel Zeit haben Sie?</label>
+      </div>
+      <div class="field">
+        <select id="r-format" name="format">
+          <option value="offen">Noch offen</option>
+          <option value="phase1">Phase 1 – Intuition für KI schärfen</option>
+          <option value="phase2">Phase 2 – Einsatzfähige Agenten bauen</option>
+          <option value="phase3">Phase 3 – Vollautonome Workflows</option>
+        </select>
+        <label for="r-format">Format</label>
+      </div>
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="cta" type="submit">Anfrage senden</button>
+      <p class="form-note">Ihre Angaben gehen direkt per E-Mail an mich. Mehr dazu in der <a href="datenschutz.html#anfrage">Datenschutzerklärung</a>.</p>
+      <p class="form-error" hidden></p>
+    </form>
+    <p class="thanks" hidden>Danke! Ihre Anfrage ist angekommen. Ich melde mich mit konkreten Terminoptionen.</p>
+  </dialog>
+
+  <!-- Newsletter als Fenster -->
+  <dialog class="sheet" id="newsletter-dialog" aria-labelledby="newsletter-title">
+    <div class="sheet-head">
+      <div>
+        <h2 id="newsletter-title">Ein System alle paar Wochen.</h2>
+        <p>Ein KI-Workflow, den ich wirklich gebaut habe, mit Aufbau, Prompts und dem, was schiefging. Kein News-Roundup.</p>
+      </div>
+      <button class="close" type="button" data-close aria-label="Schließen">×</button>
+    </div>
+    <form id="newsletter-form" data-subject="Newsletter-Anmeldung">
+      <div class="field">
+        <input id="name" name="name" type="text" autocomplete="name" required>
+        <label for="name">Name</label>
+      </div>
+      <div class="field">
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="email">E-Mail</label>
+      </div>
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="cta" type="submit">Bauplan erhalten</button>
+      <p class="form-note">Mit der Anmeldung willigen Sie ein, dass ich Ihnen den Newsletter per E-Mail schicke. Abmelden können Sie sich jederzeit mit einer kurzen Mail an mich. Mehr in der <a href="datenschutz.html#newsletter">Datenschutzerklärung</a>.</p>
+      <p class="form-error" hidden></p>
+    </form>
+    <p class="thanks" hidden>Danke! Sie sind dabei.</p>
+  </dialog>
+
+  <script src="js/forms.js"></script>
+  <script>
+    // Knöpfe öffnen das passende Formular-Fenster.
+    document.querySelectorAll('[data-open]').forEach((btn) => {
+      btn.addEventListener('click', () => document.getElementById(btn.dataset.open).showModal());
+    });
+    document.querySelectorAll('dialog [data-close]').forEach((btn) => {
+      btn.addEventListener('click', () => btn.closest('dialog').close());
+    });
+    // Klick auf den abgedunkelten Hintergrund schließt das Fenster.
+    document.querySelectorAll('dialog.sheet').forEach((dialog) => {
+      dialog.addEventListener('click', (e) => {
+        if (e.target !== dialog) return;
+        const r = dialog.getBoundingClientRect();
+        const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+        if (outside) dialog.close();
+      });
+    });
+  </script>
+</body>
+</html>

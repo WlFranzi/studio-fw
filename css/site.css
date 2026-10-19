@@ -1,0 +1,479 @@
+/* Schriften lokal (SIL Open Font License), kein Abruf bei Google */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/ibm-plex-mono-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/ibm-plex-mono-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --ink: #111;
+  --muted: #555;
+  --paper: #f3f3f1;
+  --gutter: 6vw;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background-color: var(--paper);
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* Papier-Foto hochkant: Knick liegt waagerecht in der Mitte */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: url("../img/paper-hoch.jpg") center / cover no-repeat;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grundraster: zwei Papierhälften */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.split > * {
+  padding: 0 var(--gutter);
+}
+
+section {
+  padding: 7vh 0;
+}
+
+h1, h2, h3 {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  line-height: 1.08;
+}
+
+p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+a { color: inherit; }
+
+/* ---------- Hero ---------- */
+.hero {
+  align-items: center;
+  padding: 8vh 0 6vh;
+}
+
+.hero .left {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-box {
+  width: min(20vw, 260px);
+  aspect-ratio: 3 / 4;
+}
+
+.photo-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  line-height: 1.06;
+  max-width: 18ch;
+}
+
+.hero .intro {
+  margin-top: 1.3rem;
+  max-width: 50ch;
+}
+
+.hero .intro p + p { margin-top: 0.7rem; }
+
+.hero .cta { margin-top: 1.6rem; }
+
+/* Button mit Punkt */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 0.85rem 1.7rem 0.85rem 1.6rem;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  font: inherit;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cta::after {
+  content: "";
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  outline: none;
+}
+
+/* ---------- Logo-Band ---------- */
+.logos {
+  padding: 2.4vh var(--gutter);
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  margin: 0 var(--gutter);
+}
+
+.logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.6rem 2.4rem;
+  margin-top: 1.1rem;
+}
+
+/* Höhen optisch angeglichen: breite Wortmarken kleiner, kompakte größer */
+.logo-row img {
+  display: block;
+  height: 24px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.logo-row .tum { height: 26px; }
+.logo-row .ik { height: 19px; }
+.logo-row .infineon { height: 34px; }
+.logo-row .hipp { height: 24px; }
+.logo-row .dhl { height: 17px; }
+
+/* ---------- Framework ---------- */
+.framework-head { align-items: end; }
+.framework-head h2 { max-width: 16ch; }
+
+/* Drei Phasen nebeneinander, damit man das Angebot auf einen Blick sieht */
+.phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  margin: 4vh var(--gutter) 0;
+}
+
+.phase {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.2rem;
+  border-top: 1.5px solid var(--ink);
+}
+
+.phase-num {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phase h3 {
+  margin-top: 0.7rem;
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  line-height: 1.15;
+}
+
+.phase .verb {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.meta {
+  margin-top: 0.9rem;
+  list-style: none;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.meta li::before { content: "— "; }
+
+/* zweiter Block füllt die Höhe, damit die Links unten auf einer Linie stehen */
+.phase > div:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.phase dl { margin-top: 1.1rem; flex: 1; }
+
+.phase dt {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phase dd {
+  margin: 0.25rem 0 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.phase-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 0.15rem;
+}
+
+.phase-link:hover { border-bottom-width: 3px; }
+
+/* ---------- Formulare ---------- */
+form { max-width: 520px; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.3rem;
+}
+
+/* Eingabe sitzt über der Linie, Beschriftung darunter */
+.field input,
+.field select {
+  order: 1;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  appearance: none;
+}
+
+.field select {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23111' stroke-width='1.5'/></svg>") right 0.2rem center / 12px 8px no-repeat;
+  cursor: pointer;
+}
+
+.field input:focus,
+.field select:focus { border-bottom-width: 2.5px; }
+
+.field label {
+  order: 2;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.form-note {
+  margin-top: 0.9rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.contact .lead { margin-top: 1rem; max-width: 42ch; }
+
+.contact .mail {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+/* ---------- Über ---------- */
+.about p { max-width: 54ch; }
+.about p + p { margin-top: 0.7rem; }
+
+/* ---------- Newsletter ---------- */
+.newsletter-lead { max-width: 46ch; margin-bottom: 1.6rem; }
+
+.thanks { font-size: 0.9rem; line-height: 1.55; }
+
+.form-error {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  color: #a12a1a;
+}
+
+/* Honigtopf gegen Spam-Bots, für Menschen unsichtbar */
+.hp { position: absolute; left: -9999px; }
+
+/* ---------- Footer ---------- */
+footer {
+  position: relative;
+  z-index: 1;
+  margin: 0 var(--gutter);
+  padding: 1.4rem 0 2rem;
+  border-top: 1.5px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.75rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+}
+
+.form-note a { color: inherit; }
+
+
+/* ---------- Handy ---------- */
+@media (max-width: 760px) {
+  :root { --gutter: 16px; }
+
+  .split { grid-template-columns: 1fr; }
+  .split > * + * { margin-top: 1.4rem; }
+
+  section { padding: 5vh 0; }
+
+  .hero { padding: 3vh 0 4vh; }
+  .hero .left { justify-content: flex-start; }
+  /* Foto kleiner, damit die Headline auf dem ersten Bildschirm steht */
+  .photo-box { width: 42%; max-width: 180px; }
+  .hero h1 { font-size: 1.85rem; }
+
+  /* Buttons über die volle Breite, Text in einer Zeile */
+  .cta {
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  /* ab 16px zoomt iOS beim Antippen nicht mehr in die Felder */
+  .field input,
+  .field select { font-size: 16px; padding: 0.55rem 0; }
+
+  /* Links mit genug Fläche zum Tippen (mind. 44px hoch) */
+  .phase-link,
+  .contact .mail,
+  footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .phase-link { border-bottom: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+
+  .phase dt,
+  .label,
+  .phase-num { font-size: 0.78rem; }
+
+  .logo-row { justify-content: flex-start; gap: 1.2rem 1.8rem; }
+
+  footer { flex-direction: column; gap: 0.2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+  .footer-links { flex-direction: column; gap: 0; }
+
+  .phases { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ---------- Rechtsseiten (Impressum, Datenschutz) ---------- */
+.legal {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  padding: 6vh var(--gutter) 8vh;
+}
+
+.legal .back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.85rem;
+}
+
+.legal h1 {
+  margin-top: 2rem;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1.08;
+}
+
+.legal h2 {
+  margin-top: 2.4rem;
+  font-size: 1.1rem;
+}
+
+.legal h3 {
+  margin-top: 1.4rem;
+  font-size: 0.95rem;
+}
+
+.legal p,
+.legal li {
+  margin-top: 0.6rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.legal ul { padding-left: 1.2rem; }
+
+.legal .stand {
+  margin-top: 3rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
