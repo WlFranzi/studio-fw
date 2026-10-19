@@ -3,6 +3,7 @@ const FORMAT_LABELS = {
   phase1: 'Phase 1 – Intuition für KI schärfen',
   phase2: 'Phase 2 – Einsatzfähige Agenten bauen',
   phase3: 'Phase 3 – Vollautonome Workflows',
+  talk: 'Vortrag / Keynote',
 };
 
 // Links in den Phasen wählen das passende Format im Anfrage-Formular vor.

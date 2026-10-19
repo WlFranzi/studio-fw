@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f3f3f1">
   <title>Studio FW – KI-Workshops für Teams</title>
   <meta name="description" content="KI-Workshops von Franziska Wittleder: vom Verständnis über einsatzfähige Agenten bis zu vollautonomen Workflows.">
-  <link rel="stylesheet" href="css/site.css?v=4">
+  <link rel="stylesheet" href="css/site.css?v=8">
 </head>
 <body>
   <main>
@@ -27,7 +27,7 @@
           <p>Die meisten Unternehmen nutzen KI auf Amateurniveau, weil sie nicht verstehen, wie Modelle Entscheidungen treffen. Ich habe Sprach-KI programmiert, bevor ChatGPT ein Produkt war (bei <a href="https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/" target="_blank" rel="noopener">Writer</a> in San Francisco).</p>
           <p>Ich bringe Ihrem Team bei, KI von einer „netten Spielerei“ in eine messbare Hebelwirkung (Leverage) zu verwandeln.</p>
         </div>
-        <a class="cta" href="#anfrage">Workshop-Kapazitäten anfragen</a>
+        <a class="cta primary" href="#anfrage">Workshop-Kapazitäten anfragen</a>
       </div>
     </section>
 
@@ -45,19 +45,15 @@
 
     <!-- Framework -->
     <section id="framework">
-      <div class="split framework-head">
-        <div>
-          <p class="label">Das Framework</p>
-        </div>
-        <div>
-          <h2>Vom Verständnis zur Autonomie</h2>
-        </div>
+      <div class="framework-head">
+        <p class="label">Das Framework</p>
+        <h2>Vom Verständnis zur Autonomie</h2>
       </div>
 
       <div class="phases">
       <article class="phase">
         <div>
-          <p class="phase-num">Phase 01</p>
+          <p class="phase-num"><span class="num">01</span></p>
           <h3>Die Intuition für KI schärfen</h3>
           <p class="verb">Verstehen</p>
           <ul class="meta">
@@ -79,7 +75,7 @@
 
       <article class="phase">
         <div>
-          <p class="phase-num">Phase 02</p>
+          <p class="phase-num"><span class="num">02</span></p>
           <h3>Einsatzfähige Agenten bauen</h3>
           <p class="verb">Bauen</p>
           <ul class="meta">
@@ -99,9 +95,9 @@
         </div>
       </article>
 
-      <article class="phase">
+      <article class="phase featured">
         <div>
-          <p class="phase-num">Phase 03 <span class="star" aria-label="Empfohlen">★</span></p>
+          <p class="phase-num"><span class="num">03</span> <span class="badge">★ Empfehlung</span></p>
           <h3>Vollautonome Workflows etablieren</h3>
           <p class="verb">Automatisieren</p>
           <ul class="meta">
@@ -122,8 +118,8 @@
       </div>
     </section>
 
-    <!-- Anfrage: gerahmter Block, Felder paarweise -->
-    <section id="anfrage" class="split contact contact-card">
+    <!-- Anfrage: Felder paarweise -->
+    <section id="anfrage" class="split contact">
       <div>
         <p class="label">Kontakt</p>
         <h2 style="margin-top:0.6rem">In 2 Minuten anfragen</h2>
@@ -131,7 +127,7 @@
         <a class="mail" href="mailto:franziska.wittleder@gmail.com">franziska.wittleder@gmail.com</a>
       </div>
       <div>
-        <form id="request-form" data-subject="Workshop-Anfrage">
+        <form id="request-form" data-subject="Anfrage">
           <div class="field-grid">
             <div class="field">
               <input id="r-name" name="name" type="text" autocomplete="name" required>
@@ -159,12 +155,13 @@
                 <option value="phase1">Phase 1 – Intuition für KI schärfen</option>
                 <option value="phase2">Phase 2 – Einsatzfähige Agenten bauen</option>
                 <option value="phase3">Phase 3 – Vollautonome Workflows</option>
+                <option value="talk">Vortrag / Keynote</option>
               </select>
               <label for="r-format">Format</label>
             </div>
           </div>
           <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="cta" type="submit">Anfrage senden</button>
+          <button class="cta primary" type="submit">Anfrage senden</button>
           <p class="form-note">Ihre Angaben gehen direkt per E-Mail an mich. Mehr dazu in der <a href="datenschutz.html#anfrage">Datenschutzerklärung</a>.</p>
           <p class="form-error" hidden></p>
         </form>
@@ -179,6 +176,7 @@
         <h2 style="margin-top:0.6rem">Franziska Wittleder</h2>
         <p class="about-text">Former Lead für Sprach-KI bei <a href="https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/" target="_blank" rel="noopener">Writer</a> (San Francisco), Führung von Tech-Teams bei Ring AI (Amazon), AI-Advisor für das Hamburger AI Center. Data Science (Cornell University), Economics (HSG). Gründerin von Mosso (Health-Tech).</p>
         <img class="signature" src="img/unterschrift.png" alt="Unterschrift Franziska Wittleder">
+        <a class="phase-link speaker-link" href="#anfrage" data-format="talk">Vorträge &amp; Keynotes anfragen →</a>
       </div>
 
       <!-- Newsletter als Abschnitt zum Ausschneiden -->
@@ -216,6 +214,6 @@
     </nav>
   </footer>
 
-  <script src="js/forms.js?v=4"></script>
+  <script src="js/forms.js?v=7"></script>
 </body>
 </html>
