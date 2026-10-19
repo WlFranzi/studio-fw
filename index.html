@@ -2,7 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f3f1">
   <title>Studio FW – KI-Workshops für Teams</title>
   <meta name="description" content="KI-Workshops von Franziska Wittleder: vom Verständnis über einsatzfähige Agenten bis zu vollautonomen Workflows.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -358,9 +359,40 @@
 
       .hero { padding: 3vh 0 4vh; }
       .hero .left { justify-content: flex-start; }
-      .photo-box { width: 55%; max-width: 240px; }
+      /* Foto kleiner, damit die Headline auf dem ersten Bildschirm steht */
+      .photo-box { width: 42%; max-width: 180px; }
+      .hero h1 { font-size: 1.85rem; }
+
+      /* Buttons über die volle Breite, Text in einer Zeile */
+      .cta {
+        width: 100%;
+        justify-content: space-between;
+        padding: 1rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      /* ab 16px zoomt iOS beim Antippen nicht mehr in die Felder */
+      .field input,
+      .field select { font-size: 16px; padding: 0.55rem 0; }
+
+      /* Links mit genug Fläche zum Tippen (mind. 44px hoch) */
+      .phase-link,
+      .contact .mail,
+      footer a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+      }
+
+      .phase-link { border-bottom: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+
+      .phase dt,
+      .label,
+      .phase-num { font-size: 0.78rem; }
 
       .logo-row { justify-content: flex-start; gap: 1.2rem 1.8rem; }
+
+      footer { flex-direction: column; gap: 0.2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
 
       .phases { grid-template-columns: 1fr; gap: 2rem; }
     }
@@ -500,7 +532,7 @@
             <label for="r-company">Unternehmen</label>
           </div>
           <div class="field">
-            <input id="r-who" name="who" type="text" placeholder="z. B. 15 Leute aus Marketing und Ops" required>
+            <input id="r-who" name="who" type="text" placeholder="z. B. 15 Leute, Marketing &amp; Ops" required>
             <label for="r-who">Wer nimmt teil?</label>
           </div>
           <div class="field">
