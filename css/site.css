@@ -315,10 +315,11 @@ a { color: inherit; }
   border: 1.5px solid var(--ink);
 }
 
+/* Kopfzeile: Nummer · Stichwort (· Empfehlung) */
 .phase-num {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  gap: 0.9rem;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -330,54 +331,53 @@ a { color: inherit; }
   font-size: 2.6rem;
   line-height: 1;
   letter-spacing: -0.02em;
-  text-transform: none;
 }
 
+.phase-num .badge { margin-left: auto; }
+
 .phase h3 {
-  margin-top: 1.1rem;
+  margin-top: 1rem;
   min-height: 2.24em; /* zwei Zeilen */
   font-size: clamp(1.25rem, 1.7vw, 1.55rem);
   line-height: 1.12;
 }
 
-.phase .verb {
-  margin-top: 0.35rem;
-  font-size: 0.85rem;
+/* Vorher → Nachher statt Labels */
+.phase .before {
+  margin-top: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--muted);
 }
 
-.meta {
-  margin-top: 1rem;
-  list-style: none;
-  font-size: 0.8rem;
-  line-height: 1.6;
-}
-
-.meta li::before { content: "— "; }
-
-/* zweiter Block füllt die Höhe, damit die Links unten auf einer Linie stehen */
-.phase > div:last-child {
+.phase .after {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  margin-top: 0.7rem;
+  padding-left: 1.4rem;
+  text-indent: -1.4rem;
+  font-size: 1.15rem;
+  line-height: 1.4;
 }
 
-.phase dl { margin-top: 1.2rem; flex: 1; }
-
-.phase dt {
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.phase .after::before {
+  content: "→";
+  display: inline-block;
+  width: 1.4rem;
+  text-indent: 0;
 }
 
-.phase dd {
-  margin: 0.25rem 0 0.9rem;
-  font-size: 0.95rem;
-  line-height: 1.55;
+.phase .facts {
+  margin-top: 1.3rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid currentColor;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
 
 .phase-link {
   align-self: flex-start;
+  margin-top: 1rem;
   font-size: 0.85rem;
   text-decoration: none;
   border-bottom: 1.5px solid currentColor;
@@ -392,7 +392,8 @@ a { color: inherit; }
   color: var(--paper);
 }
 
-.phase.featured .verb { color: rgba(243, 243, 241, 0.65); }
+.phase.featured .before { color: rgba(243, 243, 241, 0.65); }
+.phase.featured .facts { border-top-color: rgba(243, 243, 241, 0.35); }
 
 .badge {
   font-size: 0.68rem;
@@ -590,7 +591,6 @@ footer {
 
   .phase-link { border-bottom: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
 
-  .phase dt,
   .label,
   .phase-num { font-size: 0.78rem; }
 
