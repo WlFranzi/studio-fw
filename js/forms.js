@@ -4,6 +4,7 @@ const FORMAT_LABELS = {
   phase2: 'Phase 2 – Einsatzfähige Agenten bauen',
   phase3: 'Phase 3 – Vollautonome Workflows',
   talk: 'Vortrag / Keynote',
+  advisor: 'Laufende Begleitung (Fractional Advisor)',
 };
 
 // Links in den Phasen wählen das passende Format im Anfrage-Formular vor.
