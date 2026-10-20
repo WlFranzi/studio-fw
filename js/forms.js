@@ -25,6 +25,7 @@ const FIELD_LABELS = {
   who: 'Wer nimmt teil',
   time: 'Zeitrahmen',
   format: 'Format',
+  goal: 'Woran merken Sie, dass das Invest sich gelohnt hat',
 };
 
 function buildPayload(form) {

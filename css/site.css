@@ -172,8 +172,8 @@ a { color: inherit; }
 .photo-box {
   flex: none;
   /* Breite so, dass das Foto über den Knick passt */
-  width: min(21vw, 280px, calc((50vh - 100px) * 0.75));
-  aspect-ratio: 3 / 4;
+  /* Format kommt aus dem Foto selbst (von Franziska zugeschnitten) */
+  width: min(21vw, 300px, calc((50vh - 100px) * 0.95));
 }
 
 /* Zitat wie ein schräg aufgeklebter Zettel, ragt leicht ins Foto */
@@ -197,8 +197,7 @@ a { color: inherit; }
 .photo-box img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .hero h1 {
@@ -333,7 +332,7 @@ a { color: inherit; }
 .framework-head { margin: 0 var(--gutter); }
 .framework-head h2 {
   margin-top: 0.6rem;
-  max-width: 22ch;
+  max-width: 36ch;
   font-size: clamp(1.8rem, 2.8vw, 2.6rem);
 }
 
@@ -449,13 +448,13 @@ form { max-width: 520px; }
 .field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.8rem;
 }
 
-/* Eingabe sitzt über der Linie, Beschriftung darunter */
+/* Beschriftung über dem Feld: klar, was wozu gehört */
 .field input,
 .field select {
-  order: 1;
+  order: 2;
   width: 100%;
   padding: 0.4rem 0;
   border: 0;
@@ -478,10 +477,14 @@ form { max-width: 520px; }
 .field select:focus { border-bottom-width: 2.5px; }
 
 .field label {
-  order: 2;
-  margin-top: 0.35rem;
+  order: 1;
   font-size: 0.8rem;
   letter-spacing: 0.02em;
+}
+
+.field label .opt {
+  margin-left: 0.4rem;
+  color: var(--muted);
 }
 
 .form-note {
@@ -524,6 +527,9 @@ form { max-width: 520px; }
   column-gap: 1.6rem;
 }
 
+/* Feld über beide Spalten */
+.field-wide { grid-column: 1 / -1; }
+
 /* ---------- Über + Newsletter nebeneinander ---------- */
 .duo {
   display: grid;
@@ -534,6 +540,17 @@ form { max-width: 520px; }
 .duo > * { margin: 0 var(--gutter); }
 
 .about-text { margin-top: 0.9rem; }
+.about-text + .about-text { margin-top: 0.6rem; }
+.about-text strong { font-weight: 600; }
+
+
+.about-small {
+  margin-top: 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
 
 /* Newsletter wie ein Abschnitt zum Ausschneiden */
 .coupon {
