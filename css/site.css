@@ -549,7 +549,7 @@ a { color: inherit; }
 
 .for-whom {
   margin-top: 0.8rem;
-  max-width: 54ch;
+  max-width: none;
 }
 
 /* Kernbegriffe in den Phasen-Titeln: Marker in Pflaume */
