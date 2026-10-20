@@ -228,8 +228,8 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 14.5rem;
-  height: 14.5rem;
+  width: 13.5rem;
+  height: 13.5rem;
   margin-left: -3rem;
   margin-top: 20%;
   border-radius: 50%;
@@ -788,7 +788,7 @@ footer {
   .photo-box { width: 52vw; max-width: 220px; }
   /* Handy: Zettel unter dem Foto, leicht überlappend */
   .portrait { flex-direction: column; align-items: flex-start; }
-  .hero-quote { width: 12.5rem; height: 12.5rem; margin: -5.5rem 0 0 calc(52vw - 5rem); font-size: 0.66rem; }
+  .hero-quote { width: 12rem; height: 12rem; margin: -5.5rem 0 0 calc(52vw - 5rem); font-size: 0.66rem; }
   .hero h1 { font-size: 1.85rem; }
   .hero .promise { font-size: 1.12rem; }
 
