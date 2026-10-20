@@ -162,23 +162,36 @@ a { color: inherit; }
   justify-content: center;
 }
 
-.portrait { max-width: 100%; }
+/* Foto mit Zitat rechts daneben */
+.portrait {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
 
 .photo-box {
-  /* Breite so, dass Foto + Handschrift über den Knick passen */
-  width: min(21vw, 280px, calc((50vh - 170px) * 0.75));
+  flex: none;
+  /* Breite so, dass das Foto über den Knick passt */
+  width: min(21vw, 280px, calc((50vh - 100px) * 0.75));
   aspect-ratio: 3 / 4;
 }
 
-/* persönlicher Satz unter dem Foto */
-/* Zitat in der Schreibmaschinen-Schrift der Eckdaten */
+/* Zitat wie ein schräg aufgeklebter Zettel, ragt leicht ins Foto */
 .hero-quote {
-  margin-top: 0.9rem;
-  max-width: 26ch;
+  position: relative;
+  z-index: 1;
+  width: 15em;
+  margin-left: -2.2rem;
+  margin-top: 30%;
+  padding: 0.9rem 1rem;
+  background: #fbfbf9;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.25);
+  transform: rotate(-4deg);
   text-wrap: balance;
   font-family: var(--mono);
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 .photo-box img {
@@ -549,7 +562,8 @@ footer {
   .hero .left { justify-content: flex-start; }
   /* Foto kleiner, damit die Headline auf dem ersten Bildschirm steht */
   .hero { min-height: 0; }
-  .photo-box { width: 55%; max-width: 230px; }
+  .photo-box { width: 48%; max-width: 200px; }
+  .hero-quote { width: auto; flex: 1; margin-left: -1.4rem; margin-top: 35%; font-size: 0.78rem; padding: 0.7rem 0.8rem; }
   .phase h3 { min-height: 0; }
   .hero h1 { font-size: 1.85rem; }
 
