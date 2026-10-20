@@ -288,6 +288,7 @@ a { color: inherit; }
 
 .logo-row .tum { height: 26px; }
 .logo-row .mckinsey { height: 38px; opacity: 1; }
+.logo-row .ik { height: 19px; }
 .logo-row .infineon { height: 34px; }
 .logo-row .hipp { height: 24px; }
 .logo-row .dhl { height: 17px; }
@@ -304,13 +305,18 @@ a { color: inherit; }
 .phases {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.4rem;
+  grid-template-rows: repeat(6, auto);
+  column-gap: 1.4rem;
+  row-gap: 0;
   margin: 5vh var(--gutter) 0;
 }
 
+/* Subgrid: gleiche Zeilen aller Karten stehen auf gleicher Höhe */
 .phase {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-row: span 6;
+  grid-template-rows: subgrid;
+  row-gap: 0;
   padding: 1.6rem 1.6rem 1.5rem;
   border: 1.5px solid var(--ink);
 }
@@ -337,7 +343,6 @@ a { color: inherit; }
 
 .phase h3 {
   margin-top: 1rem;
-  min-height: 2.24em; /* zwei Zeilen */
   font-size: clamp(1.25rem, 1.7vw, 1.55rem);
   line-height: 1.12;
 }
@@ -351,7 +356,6 @@ a { color: inherit; }
 }
 
 .phase .after {
-  flex: 1;
   margin-top: 0.7rem;
   padding-left: 1.4rem;
   text-indent: -1.4rem;
@@ -367,6 +371,7 @@ a { color: inherit; }
 }
 
 .phase .facts {
+  align-self: start;
   margin-top: 1.3rem;
   padding-top: 0.9rem;
   border-top: 1px solid currentColor;
@@ -376,7 +381,8 @@ a { color: inherit; }
 }
 
 .phase-link {
-  align-self: flex-start;
+  justify-self: start;
+  align-self: start;
   margin-top: 1rem;
   font-size: 0.85rem;
   text-decoration: none;
@@ -565,7 +571,6 @@ footer {
   .hero { min-height: 0; }
   .photo-box { width: 48%; max-width: 200px; }
   .hero-quote { width: auto; flex: 1; margin-left: -1.4rem; margin-top: 35%; font-size: 0.78rem; padding: 0.7rem 0.8rem; }
-  .phase h3 { min-height: 0; }
   .hero h1 { font-size: 1.85rem; }
 
   /* Buttons über die volle Breite, Text in einer Zeile */
@@ -599,7 +604,8 @@ footer {
   footer { flex-direction: column; gap: 0.2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
   .footer-links { flex-direction: column; gap: 0; }
 
-  .phases { grid-template-columns: 1fr; gap: 1rem; }
+  .phases { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 1rem; }
+  .phase { display: flex; flex-direction: column; grid-row: auto; }
   .phase { padding: 1.4rem 1.2rem 1.3rem; }
 }
 
