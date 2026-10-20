@@ -65,7 +65,12 @@ async function sendForm(e) {
     form.hidden = true;
     form.nextElementSibling.hidden = false;
   } catch (err) {
-    error.innerHTML = `Das hat leider nicht geklappt. Schreiben Sie mir bitte direkt an <a href="mailto:${INBOX}">${INBOX}</a>.`;
+    console.error('Formular-Versand fehlgeschlagen:', err.message);
+    // Beim allerersten Versand verlangt FormSubmit eine Freischaltung per Mail an INBOX
+    const needsActivation = /activat/i.test(err.message);
+    error.innerHTML = needsActivation
+      ? 'Das Formular ist noch nicht freigeschaltet. Bitte den Link „Activate Form“ in der Bestätigungsmail von FormSubmit anklicken und dann erneut senden.'
+      : `Das hat leider nicht geklappt. Schreiben Sie mir bitte direkt an <a href="mailto:${INBOX}">${INBOX}</a>.`;
     error.hidden = false;
     button.disabled = false;
   }
