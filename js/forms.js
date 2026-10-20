@@ -19,6 +19,18 @@ document.querySelectorAll('[data-format]').forEach((link) => {
 const INBOX = 'franziska.wittleder@gmail.com';
 const ENDPOINT = `https://formsubmit.co/ajax/${INBOX}`;
 
+// Meldungen je nach Sprache der Seite (<html lang="de|en">)
+const MESSAGES = {
+  de: {
+    activation: 'Das Formular ist noch nicht freigeschaltet. Bitte den Link „Activate Form“ in der Bestätigungsmail von FormSubmit anklicken und dann erneut senden.',
+    failed: `Das hat leider nicht geklappt. Schreiben Sie mir bitte direkt an <a href="mailto:${INBOX}">${INBOX}</a>.`,
+  },
+  en: {
+    activation: 'This form isn’t activated yet. Please click “Activate Form” in the confirmation email from FormSubmit, then send again.',
+    failed: `Something went wrong. Please email me directly at <a href="mailto:${INBOX}">${INBOX}</a>.`,
+  },
+};
+
 const FIELD_LABELS = {
   name: 'Name',
   email: 'E-Mail',
@@ -68,9 +80,8 @@ async function sendForm(e) {
     console.error('Formular-Versand fehlgeschlagen:', err.message);
     // Beim allerersten Versand verlangt FormSubmit eine Freischaltung per Mail an INBOX
     const needsActivation = /activat/i.test(err.message);
-    error.innerHTML = needsActivation
-      ? 'Das Formular ist noch nicht freigeschaltet. Bitte den Link „Activate Form“ in der Bestätigungsmail von FormSubmit anklicken und dann erneut senden.'
-      : `Das hat leider nicht geklappt. Schreiben Sie mir bitte direkt an <a href="mailto:${INBOX}">${INBOX}</a>.`;
+    const t = MESSAGES[document.documentElement.lang] || MESSAGES.de;
+    error.innerHTML = needsActivation ? t.activation : t.failed;
     error.hidden = false;
     button.disabled = false;
   }
