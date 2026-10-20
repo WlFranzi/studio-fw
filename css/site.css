@@ -284,12 +284,34 @@ a { color: inherit; }
 }
 
 .logo-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.6rem 2.4rem;
   margin-top: 1.1rem;
+  overflow: hidden;
+  /* weiche Kanten links und rechts */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Laufband: zwei gleiche Durchläufe, Verschiebung um genau die Hälfte = nahtlose Schleife */
+.logo-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: logos-laufen 40s linear infinite;
+}
+.logo-row:hover .logo-track { animation-play-state: paused; }
+.logo-track img { margin-right: 4rem; }
+
+@keyframes logos-laufen {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Wer weniger Bewegung will, sieht die Logos ruhig nebeneinander */
+@media (prefers-reduced-motion: reduce) {
+  .logo-row { -webkit-mask-image: none; mask-image: none; }
+  .logo-track { animation: none; width: auto; flex-wrap: wrap; justify-content: space-between; gap: 1.6rem 2.4rem; }
+  .logo-track img { margin-right: 0; }
+  .logo-track img[aria-hidden="true"] { display: none; }
 }
 
 /* Höhen optisch angeglichen: breite Wortmarken kleiner, kompakte größer */
@@ -614,7 +636,8 @@ footer {
   .label,
   .phase-num { font-size: 0.78rem; }
 
-  .logo-row { justify-content: flex-start; gap: 1.2rem 1.8rem; }
+  .logo-track { animation-duration: 28s; }
+  .logo-track img { margin-right: 2.6rem; }
 
   footer { flex-direction: column; gap: 0.2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
   .footer-links { flex-direction: column; gap: 0; }
