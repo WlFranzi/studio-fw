@@ -197,7 +197,6 @@ a { color: inherit; }
   line-height: 1.55;
 }
 
-.hero-quote strong { font-weight: 500; background: linear-gradient(transparent 55%, rgba(var(--neon-plum), 0.38) 55%); }
 
 .photo-box img {
   display: block;
