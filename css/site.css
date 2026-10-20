@@ -87,21 +87,30 @@
 html { scroll-behavior: smooth; }
 
 body {
+  position: relative;
   min-height: 100vh;
-  background-color: var(--paper);
+  /* Papier ohne Knick läuft über die ganze Seite und scrollt mit */
+  background: var(--paper) url("../img/paper-textur.jpg") center top / 100% auto repeat-y;
   font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   color: var(--ink);
   overflow-x: hidden;
 }
 
-/* Papier-Foto hochkant: Knick liegt waagerecht in der Mitte */
+/* Papier-Foto hochkant: Knick waagerecht auf halber Höhe des ersten Bildschirms.
+   Scrollt mit weg und läuft unten weich ins Papier ohne Knick aus. */
 body::before {
   content: "";
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100svh;
   pointer-events: none;
   z-index: 0;
   background: url("../img/paper-hoch.jpg") center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent);
+          mask-image: linear-gradient(to bottom, #000 75%, transparent);
 }
 
 main {
