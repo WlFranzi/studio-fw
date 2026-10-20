@@ -187,23 +187,28 @@ a { color: inherit; }
   width: min(21vw, 300px, calc((50vh - 100px) * 0.95));
 }
 
-/* Zitat wie ein schräg aufgeklebter Zettel, ragt leicht ins Foto */
+/* Zitat als runder Aufkleber, ragt leicht ins Foto */
 .hero-quote {
   position: relative;
   z-index: 1;
-  width: max-content;
-  white-space: nowrap;
-  margin-left: -2.2rem;
-  margin-top: 30%;
-  padding: 0.9rem 1rem;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14.5rem;
+  height: 14.5rem;
+  margin-left: -3rem;
+  margin-top: 20%;
+  border-radius: 50%;
   background: #fbfbf9;
   border: 1px solid rgba(17, 17, 17, 0.12);
   box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.25);
-  transform: rotate(-4deg);
-  text-wrap: balance;
+  transform: rotate(-8deg);
+  text-align: center;
+  white-space: nowrap;
   font-family: var(--mono);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  font-size: 0.74rem;
+  line-height: 1.6;
 }
 
 
@@ -741,7 +746,7 @@ footer {
   .photo-box { width: 52vw; max-width: 220px; }
   /* Handy: Zettel unter dem Foto, leicht überlappend */
   .portrait { flex-direction: column; align-items: flex-start; }
-  .hero-quote { margin: -1.6rem 0 0 1.2rem; font-size: 0.8rem; padding: 0.75rem 0.9rem; }
+  .hero-quote { width: 12.5rem; height: 12.5rem; margin: -5.5rem 0 0 calc(52vw - 5rem); font-size: 0.66rem; }
   .hero h1 { font-size: 1.85rem; }
   .hero .promise { font-size: 1.12rem; }
 
